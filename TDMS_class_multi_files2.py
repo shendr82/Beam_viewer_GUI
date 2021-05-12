@@ -2,12 +2,16 @@
 """
 Created on Mon Feb  1 14:48:22 2021
 
+Class MultiTDMSData is a line of code for Beam viewer GUI
+
+It contains methods for reading multiple TDMS (Beam parameters) files and
+compaire data from individual files.
+These methods get called by buttons clicked in Beam viewer GUI.
+
 @author: ShendR
 """
 from nptdms import TdmsFile
 import matplotlib.pyplot as plt
-from datetime import datetime
-from datetime import timedelta
 from tkinter import filedialog
 from tkinter import *
 import numpy as np
@@ -74,6 +78,13 @@ def read_tdms_file(open_multiple_tdms):
     dict1 = {}
     for i in open_multiple_tdms[1]:
         tdms_file = TdmsFile(i)
+        root_obj_keys=[]
+        root_obj_values=[]
+        root_object=tdms_file.object()
+        root_properties=root_object.properties.items()
+        for key, value in root_properties:
+            root_obj_keys.append(key)
+            root_obj_values.append(value)
         
         def tdms_groups_list():
             group_list = tdms_file.groups()
@@ -106,10 +117,10 @@ def read_tdms_file(open_multiple_tdms):
             nparray = np.array(array)
             return nparray
         
-        shotid.append(i[45:57])
+        shotid.append(root_obj_values[1])
 
 # ****** Just Emitter and Extractor - Volage and Current data  *****       
-        dict1[i[45:57]] = [data_array(), data_array(channels[39]), data_array(channels[40]), data_array(channels[44]), data_array(channels[45])]
+        dict1[root_obj_values[1]] = [data_array(), data_array(channels[39]), data_array(channels[40]), data_array(channels[44]), data_array(channels[45])]
         
 #    print(shotid)
     return dict1, shotid
@@ -127,6 +138,13 @@ def just_HV_raise_data(open_multiple_tdms):
     dict2 = {}
     for i in open_multiple_tdms[1]:
         tdms_file = TdmsFile(i)
+        root_obj_keys=[]
+        root_obj_values=[]
+        root_object=tdms_file.object()
+        root_properties=root_object.properties.items()
+        for key, value in root_properties:
+            root_obj_keys.append(key)
+            root_obj_values.append(value)
         
         def tdms_groups_list():
             group_list = tdms_file.groups()
@@ -159,10 +177,10 @@ def just_HV_raise_data(open_multiple_tdms):
             nparray = np.array(array)
             return nparray
         
-        shotid.append(i[45:57])
+        shotid.append(root_obj_values[1])
 
 # ****** Just Emitter and Extractor - Volage and Current data  *****       
-        dict2[i[45:57]] = [data_array(), data_array(channels[39]), data_array(channels[40]), data_array(channels[44]), data_array(channels[45])]
+        dict2[root_obj_values[1]] = [data_array(), data_array(channels[39]), data_array(channels[40]), data_array(channels[44]), data_array(channels[45])]
         
     return dict2, shotid
  
@@ -274,12 +292,12 @@ def compare_beam_values(just_HV_raise_data):
         ExVvalue_array=dframe['Ext Voltage']
         EmCvalue_array1=EmCvalue_array[15:len(EmCvalue_array)]
         EmCvalue_mean1=np.mean(EmCvalue_array1)
-        EmCvalue_array2=EmCvalue_array[0:5]
+        EmCvalue_array2=EmCvalue_array[0:4]
         EmCvalue_mean2=np.mean(EmCvalue_array2)
         
         ExCvalue_array1=ExCvalue_array[15:len(ExCvalue_array)]
         ExCvalue_mean1=np.mean(ExCvalue_array1)
-        ExCvalue_array2=ExCvalue_array[0:5]
+        ExCvalue_array2=ExCvalue_array[0:4]
         ExCvalue_mean2=np.mean(ExCvalue_array2)
         ExCvalue_drop=ExCvalue_mean2 - ExCvalue_mean1
         
@@ -316,10 +334,10 @@ def plot_beam_meancurrent(just_HV_raise_data, compare_beam_values, plot_area):
     fig2 = plot_area.fig.add_subplot(111)
 #    fig2 = plt.figure()  
     fig1.plot(x,y, lw=1, marker='o', c='r', label = 'Beam Current [mA]')
-    fig2.plot(x,y2, lw=1, marker='o', c='b', label = 'Beam focus')
-    fig1.set_title('Beam current and focus by ShotID')
+    fig2.plot(x,y2, lw=1, marker='o', c='b', label = 'Beam HV ratio')
+    fig1.set_title('Beam current and HV ratio by ShotID')
     fig1.set_xlabel('ShotID')
-    fig1.set_ylabel('Beam current [mA] / focus')
+    fig1.set_ylabel('Beam current [mA] / HV ratio')
 #    fig1.legend()
 #    plt.show()
     plot_area.draw()

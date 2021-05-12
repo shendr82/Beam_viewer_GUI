@@ -745,7 +745,7 @@ class Ui_MainWindow(object):
         self.MultipleShots_group.setTitle(_translate("MainWindow", "Multiple shots"))
         self.MultiCurrents_button.setText(_translate("MainWindow", "Plot multiple Beam currents"))
         self.ListShots_label.setText(_translate("MainWindow", "List of Shots"))
-        self.CompareCurrFocus_button.setText(_translate("MainWindow", "Compare Beam current / focus"))
+        self.CompareCurrFocus_button.setText(_translate("MainWindow", "Compare Beam current / ratio"))
         self.Advanced_tab.setTabText(self.Advanced_tab.indexOf(self.tab), _translate("MainWindow", "Compare"))
         self.ShotID_box.setText(_translate("MainWindow", "shotID"))
         self.AlkaliBeam_data_viwer.setText(_translate("MainWindow", "Alkali Beam - data viewer"))

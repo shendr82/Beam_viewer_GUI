@@ -2,6 +2,10 @@
 """
 Created on Wed Mar 10 15:20:21 2021
 
+This line of code is for connecting TDMS data processing codes with the GUI code.
+
+
+
 @author: ShendR
 """
 
@@ -9,24 +13,13 @@ from Beam_GUI8 import Ui_MainWindow
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QVBoxLayout, QDialog
 
-
-from nptdms import TdmsFile
-import matplotlib.pyplot as plt
-from datetime import datetime
-from datetime import timedelta
-from tkinter import filedialog
-from tkinter import *
-import numpy as np
-import matplotlib.animation as animation
-
-
+import TDMS_class_for_GUI2
+import TDMS_class_multi_files2
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 
-import TDMS_class_for_GUI2
-import TDMS_class_multi_files
 
 class BeamGUI(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -68,7 +61,7 @@ class BeamGUI(QtWidgets.QMainWindow, Ui_MainWindow):
         
 # Connecting TDMScalss and multiTDMSclass
         self.tdms = TDMS_class_for_GUI2.TDMSData()
-        self.multi_tdms = TDMS_class_multi_files.MultiTDMSData()
+        self.multi_tdms = TDMS_class_multi_files2.MultiTDMSData()
         
         self.Open_button.clicked.connect(lambda: self.open_file())
         self.Plot_VA_button.clicked.connect(lambda: self.tdms.run_plot_UI(self.Big_graphicsView))

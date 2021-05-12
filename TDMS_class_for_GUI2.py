@@ -2,6 +2,17 @@
 """
 Created on Mon Jan 18 13:24:59 2021
 
+Class TDMSData is a line of code for Beam viewer GUI
+
+TDMSData contains methods for reading TDMS (Beam parameters) files and uses 
+data to show parameters and characteristics of the alkali beam for the given
+shot.
+These methods get called by buttons clicked in Beam viewer GUI.
+
+IMPORTANT: 
+    Line 167 - Check TDMS file location on you drive
+    Line 766 - Check CMOS file location on you drive (directory should be shotID)
+
 @author: ShendR
 """
 
