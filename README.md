@@ -8,8 +8,14 @@ Files needed to run app:
 	Beam_GUI8.py
 	TDMS_connect_with_GUI3.py
 
-TDMS files - copy TDMS files on your drive
-CMOS files - copy CMOS (bmp images) on your drive - directory name should be shotID
+TDMS files:
+	- copy TDMS files on your drive
+	- some files are in this pakage (see TDMS files directory)
+
+CMOS files:
+	- copy CMOS (bmp images) on your drive
+	- directory name should be shotID
+	- files not included in this pakage (see on Beam: /data/W7-X/APDCAM/'shotID')
 
 IMPORTANT:
 	TDMS_class_for_GUI2.py
