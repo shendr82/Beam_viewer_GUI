@@ -18,6 +18,8 @@ CMOS files:
 	- files not included in this pakage (see on Beam: /data/W7-X/APDCAM/'shotID')
 
 IMPORTANT:
+	Insall and use nptdms 0.18.1 version (conda install -c conda-forge nptdms=0.18.1)
+
 	TDMS_class_for_GUI2.py
 		Line 167 - Check TDMS file location on you drive
     		Line 766 - Check CMOS file location on you drive (directory should be shotID)	
